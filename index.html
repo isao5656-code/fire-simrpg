@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10131f">
+  <title>炎翼の紋章 | 8bit Tactical RPG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <main id="app">
+    <header class="topbar">
+      <div class="brand"><span class="crest">♜</span><div><p>8BIT TACTICAL CHRONICLE</p><h1>炎翼の紋章</h1></div></div>
+      <div class="header-actions">
+        <div class="save-controls"><button id="saveGame" title="現在の戦況を保存">記録</button><button id="loadGame" title="保存した戦況を再開">再開</button></div>
+        <div class="turn-box"><span id="phaseLabel">PLAYER PHASE</span><b>TURN <strong id="turnNumber">1</strong></b></div>
+      </div>
+    </header>
+
+    <section class="chapter-strip">
+      <button class="chapter-tab active" data-stage="0"><small>STAGE 01</small><b>辺境の狼煙</b></button>
+      <span class="chapter-line"></span>
+      <button class="chapter-tab locked" data-stage="1"><small>STAGE 02</small><b>霧深き古城</b></button>
+      <span class="chapter-line"></span>
+      <button class="chapter-tab locked" data-stage="2"><small>STAGE 03</small><b>王都奪還</b></button>
+    </section>
+
+    <section class="game-layout">
+      <aside class="panel mission-panel">
+        <div class="panel-title">戦況報告 <span>MISSION</span></div>
+        <div class="chapter-art" id="chapterArt"><span id="chapterRoman">I</span></div>
+        <p class="eyebrow" id="stageNo">STAGE 01</p>
+        <h2 id="stageTitle">辺境の狼煙</h2>
+        <p class="story" id="stageStory"></p>
+        <div class="objective"><span>勝利条件</span><b id="objectiveText"></b></div>
+        <div class="party-list" id="partyList"></div>
+      </aside>
+
+      <section class="battlefield-wrap">
+        <div class="map-frame">
+          <div id="battlefield" class="battlefield" role="grid" aria-label="戦場マップ"></div>
+          <div class="map-corner tl"></div><div class="map-corner tr"></div>
+          <div class="map-corner bl"></div><div class="map-corner br"></div>
+          <div class="phase-banner" id="phaseBanner"><small>PHASE</small><strong>PLAYER</strong><span>あなたの軍勢</span></div>
+          <div class="combat-scene" id="combatScene" hidden aria-live="assertive">
+            <div class="combatant ally-combat"><small>PLAYER</small><strong id="combatAllyName"></strong><div class="combat-sprite" id="combatAllyIcon"></div><div class="combat-hp"><i id="combatAllyHp"></i></div><b id="combatAllyHpText"></b></div>
+            <div class="combat-flash" id="combatFlash">斬</div>
+            <div class="combatant enemy-combat"><small>ENEMY</small><strong id="combatEnemyName"></strong><div class="combat-sprite" id="combatEnemyIcon"></div><div class="combat-hp"><i id="combatEnemyHp"></i></div><b id="combatEnemyHpText"></b></div>
+            <div class="damage-number" id="damageNumber"></div>
+            <div class="combat-caption" id="combatCaption"></div>
+          </div>
+          <div class="result-modal" id="resultModal" hidden>
+            <div class="result-crest">♛</div><p>CHAPTER CLEAR</p><h2 id="resultTitle"></h2>
+            <button id="nextStage">次の章へ進む <span>›</span></button>
+          </div>
+        </div>
+        <div class="battle-controls">
+          <div class="legend"><span><i class="ally-dot"></i>味方</span><span><i class="enemy-dot"></i>敵軍</span><span><i class="move-dot"></i>移動範囲</span></div>
+          <button id="endTurn" class="end-turn">ターン終了 <span>▶</span></button>
+        </div>
+        <div id="messageLog" class="message-log">ユニットを選択してください。</div>
+      </section>
+
+      <aside class="panel unit-panel">
+        <div class="panel-title">部隊情報 <span>UNIT</span></div>
+        <div id="unitEmpty" class="unit-empty"><span>♙</span><p>ユニットを選択</p><small>SELECT A UNIT</small></div>
+        <div id="unitCard" hidden>
+          <div class="unit-heading"><div id="unitPortrait" class="big-portrait"></div><div><small id="unitClass"></small><h2 id="unitName"></h2><span>LV. <b id="unitLevel"></b></span></div></div>
+          <div class="hp-row"><b>HP</b><div><i id="hpBar"></i></div><strong id="hpText"></strong></div>
+          <div class="stats" id="unitStats"></div>
+          <div class="weapon"><span>装備</span><b id="unitWeapon"></b><small id="weaponMight"></small></div>
+          <div class="guide" id="unitGuide">青いマスを選択して移動</div>
+        </div>
+        <div class="terrain-card"><span>地形</span><b id="terrainName">平原</b><div><small>回避</small><strong id="terrainAvoid">+0</strong><small>守備</small><strong id="terrainDef">+0</strong></div></div>
+      </aside>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
