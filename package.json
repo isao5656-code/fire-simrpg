@@ -1,0 +1,13 @@
+{
+  "name": "enyoku-no-monsho",
+  "version": "1.0.0",
+  "private": true,
+  "description": "炎翼の紋章 — ブラウザで遊べる8bit風シミュレーションRPG（依存パッケージなし）",
+  "scripts": {
+    "test": "node --test tests/rules.test.js",
+    "sim": "node tests/simulate.js 10",
+    "balance": "node tests/balance.js",
+    "serve": "python3 -m http.server 4173"
+  },
+  "license": "MIT"
+}
